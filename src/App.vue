@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app :style="{background: backgroundColor}">
+    <AppBar />
+    <v-main>
+      <Main />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppBar from './components/AppBar.vue';
+import Main from './components/Main';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    AppBar,
+    Main
+  },
+  computed: {
+    backgroundColor() {
+      const isDark = this.$vuetify.theme.dark;
+      return isDark
+        ? undefined
+        : this.$vuetify.theme.themes.light.background;
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
