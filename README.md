@@ -1,4 +1,4 @@
-# szeregowanie
+# Szeregowanie liniowe
 
 ## Project setup
 ```
