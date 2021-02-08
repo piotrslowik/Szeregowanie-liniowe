@@ -1,5 +1,3 @@
-import { Table, ITable } from '../classes';
+import { Table } from '../classes';
 
-export const state: ITable = {
-  ...new Table(),
-};
+export const state = new Table();

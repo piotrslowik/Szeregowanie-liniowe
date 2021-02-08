@@ -15,26 +15,25 @@ export class Table implements ITable {
     this.rows = [];
   }
 
-  static setColumns(table: ITable, columns: Column[] = []) {
-    table.columns = [new Column('Nazwa', 'name'), ...columns];
+  setColumns(columns: Column[] = []) {
+    this.columns = [new Column('Nazwa', 'name'), ...columns];
   }
-  static addColumn(table: ITable, column: Column = new Column()) {
-    table.columns.push(column);
+  addColumn(column: Column = new Column()) {
+    this.columns.push(column);
   }
-
-  static setRows(table: ITable, rows: Row[] = []) {
-    table.rows = rows;
+  setRows(rows: Row[] = []) {
+    this.rows = rows;
   }
-  static addRow(table: ITable, row: Row = new Row()) {
-    table.rows.push(row);
+  addRow(row: Row = new Row()) {
+    this.rows.push(row);
   }
-  static deleteRow(table: ITable, row: Row) {
-    table.rows = table.rows.filter(_row => _row.id !== row.id);
+  deleteRow(row: Row) {
+    this.rows = this.rows.filter(_row => _row.id !== row.id);
   }
-  static editRow(table: ITable, row: Row) {
-    const index = table.rows.findIndex(_row => _row.id === row.id);
-    const rowsCopy = table.rows.map(val => val);
+  editRow(row: Row) {
+    const index = this.rows.findIndex(_row => _row.id === row.id);
+    const rowsCopy = this.rows.map(val => val);
     rowsCopy[index] = row;
-    table.rows = rowsCopy;
+    this.rows = rowsCopy;
   }
 }
