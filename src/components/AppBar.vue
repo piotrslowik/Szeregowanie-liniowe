@@ -34,23 +34,21 @@
       </v-icon>
     </v-btn>
     
-    <v-btn
-      class="ml-6"
-      @click="loadCsv"
-    >
-      Wczytaj CSV
-      <v-icon right>
-        mdi-file-delimited-outline
-      </v-icon>
-    </v-btn>
+    <span class="ml-6">
+      <CsvDialog />
+    </span>
   </v-app-bar> 
 </template>
 
 <script>
 import { ACTIONS } from '@/store/action-types';
+import CsvDialog from '@/components/dialogs/CsvDialog';
 
 export default {
   name: 'AppBar',
+  components: {
+    CsvDialog,
+  },
   data() {
     return {
       collapse: true,
