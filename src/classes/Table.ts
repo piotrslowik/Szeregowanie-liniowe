@@ -32,7 +32,9 @@ export class Table implements ITable {
     table.rows = table.rows.filter(_row => _row.id !== row.id);
   }
   static editRow(table: ITable, row: Row) {
-    const index = table.rows.findIndex(_row => _row.id === row.id)
-    table.rows[index] = row;
+    const index = table.rows.findIndex(_row => _row.id === row.id);
+    const rowsCopy = table.rows.map(val => val);
+    rowsCopy[index] = row;
+    table.rows = rowsCopy;
   }
 }

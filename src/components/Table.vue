@@ -12,7 +12,9 @@
             <span class="mx-1" />
             <NewRowDialog />
         </v-card-title>
-        <v-card-text>
+        <v-card-text
+            class="px-0"
+        >
             <v-data-table
                 :dense="dense"
                 :headers="headers"
