@@ -17,7 +17,7 @@
             <ValidationProvider
               v-slot="{ errors, valid }"
               rules="required|between:1,100|digits"
-              name="waga"
+              :name="column.value"
             >
               <v-text-field
                 :label="column.text"
@@ -28,8 +28,20 @@
                 max="100"
                 suffix="%"
                 :step="1"
+                autocomplete="off"
               />
             </ValidationProvider>
+          </v-col>
+          <v-col
+            cols="6"
+            sm="4"
+            md="3"
+            lg="2"
+            class="align-self-center"
+          >
+            <p class="text-h6 ma-0">
+              Suma: {{ getSum() }}%
+            </p>
           </v-col>
         </v-row>
       </ValidationObserver>
@@ -43,6 +55,11 @@ export default {
   computed: {
     columns() {
       return this.$store.getters.valueColumns;
+    },
+  },
+  methods: {
+    getSum() {
+      return 0;
     },
   },
 };

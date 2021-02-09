@@ -1,4 +1,5 @@
 export enum MUTATIONS {
+  setTable = 'setTable',
   setColumns = 'setColumns',
   addColumn = 'addColumn',
   setRows = 'setRows',

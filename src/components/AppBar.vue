@@ -61,9 +61,6 @@ export default {
     setDemo() {
       this.$store.dispatch(ACTIONS.createExample);
     },
-    loadCsv() {
-
-    },
   },
 };
 </script>

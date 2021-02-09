@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { ACTIONS } from '@/store/action-types';
+
 export default {
     name: 'CsvDialog',
     data() {
@@ -88,9 +90,17 @@ export default {
             this.$refs.Validator.setErrors({csv: error});
         },
         processRows(rows) {
-            console.table(rows)
-            
-        }
+            try {
+                const headers = rows.shift();
+                this.$store.dispatch(ACTIONS.loadFromCsv, {
+                    headers,
+                    rows,
+                });
+                this.dialog = false;
+            } catch (error) {
+                this.$refs.Validator.setErrors({csv: error.message});
+            }
+        },
     },
 };
 </script>

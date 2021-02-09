@@ -3,6 +3,9 @@ import { MutationTree } from 'vuex';
 import { MUTATIONS } from './mutation-types';
 
 export const mutations: MutationTree<Table> = {
+  [MUTATIONS.setTable]: (state: Table, objectsName: string): any => {
+    state = new Table(objectsName);
+  },
   [MUTATIONS.setColumns]: (state: Table, cols: Column[]): any => {
     state.setColumns(cols);
   },

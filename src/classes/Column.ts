@@ -2,11 +2,20 @@ import { Row } from './Row';
 
 export default class Column {
   public text: string
-  public value: string
+  public nameColumn: boolean
 
-  constructor(name: string = "Nazwa", value: string = "nazwa") {
+  constructor(name: string = "Nazwa", nameColumn: boolean = false) {
     this.text = name;
-    this.value = value;
+    this.nameColumn = nameColumn;
+  }
+
+  get value(): string {
+    return this.nameColumn
+      ? 'name'
+      : this.text
+        .trim()
+        .replaceAll(/\.|,|\?|\/|\\|;|;|'|"|\[|\]|\{|\}|<|>|!|@|#|\$|%|\^|&|\*|\(|\)| /g, '_')
+        .toLowerCase();
   }
 
   changeName(name: string) {

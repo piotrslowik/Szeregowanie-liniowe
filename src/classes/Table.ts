@@ -4,19 +4,22 @@ import { Row } from './Row';
 export interface ITable {
   columns: Column[];
   rows: Row[];
+  objectsName: string;
 }
 
 export class Table implements ITable {
   public columns: Column[];
   public rows: Row[];
+  public objectsName: string;
 
-  constructor() {
-    this.columns = [new Column('Nazwa', 'name')];
+  constructor(objectsName: string = 'Nazwa') {
+    this.objectsName = objectsName;
+    this.columns = [new Column(objectsName, true)];
     this.rows = [];
   }
 
   setColumns(columns: Column[] = []) {
-    this.columns = [new Column('Nazwa', 'name'), ...columns];
+    this.columns = [new Column(this.objectsName, true), ...columns];
   }
   addColumn(column: Column = new Column()) {
     this.columns.push(column);
