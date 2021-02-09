@@ -12,16 +12,25 @@ export class Table implements ITable {
   public rows: Row[];
   public objectsName: string;
 
-  constructor(objectsName: string = 'Nazwa') {
-    this.objectsName = objectsName;
-    this.columns = [new Column(objectsName, true)];
+  constructor() {
+    this.objectsName = '';
+    this.columns = [];
     this.rows = [];
   }
-
+  
+  initTable(objectsName: string) {
+    this.objectsName = objectsName;
+    this.columns = [new Column(objectsName, true)];
+  }
+  reset() {
+    this.objectsName = '';
+    this.columns = [];
+    this.rows = [];
+  }
   setColumns(columns: Column[] = []) {
     this.columns = [new Column(this.objectsName, true), ...columns];
   }
-  addColumn(column: Column = new Column()) {
+  addColumn(column: Column) {
     this.columns.push(column);
   }
   setRows(rows: Row[] = []) {

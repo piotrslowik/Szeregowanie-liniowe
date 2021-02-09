@@ -4,7 +4,7 @@ export default class Column {
   public text: string
   public nameColumn: boolean
 
-  constructor(name: string = "Nazwa", nameColumn: boolean = false) {
+  constructor(name: string, nameColumn: boolean = false) {
     this.text = name;
     this.nameColumn = nameColumn;
   }
@@ -21,7 +21,6 @@ export default class Column {
   changeName(name: string) {
     this.text = name;
   }
-
   average(rows: Row[]): number {
     const sum = rows.reduce((acc, row) => acc += row.values[this.value], 0);
     return sum / rows.length;

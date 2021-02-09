@@ -31,7 +31,8 @@
                 <p>
                     Znakiem oddzielenia komórek może być zarówno średnik jak i dwukropek. Wiersze powinny się kończyć znakiem nowej linii.
                 <p>
-                    Aby zachować polskie znaki formatowanie pliku powinno zostać ustalone na UTF-8 lub UTF-8 with BOM.
+                    Aby zachować polskie znaki formatowanie pliku powinno zostać ustalone na UTF-8 lub UTF-8 with BOM.<br />
+                    Część dziesiętna od ułamkowej powinna być oddzielona kropką, nie przecinkiem.
                 </p>
             </v-card-text>
             <v-card-actions>
@@ -68,7 +69,7 @@ export default {
     methods: {
         loadCsv(file) {
             if (window.FileReader) {
-                this.getAsText(file);
+                if (file) this.getAsText(file);
             } else {
                 this.$refs.Validator.setErrors({csv: 'Ta przeglądarka nie obsługuje odczytu plików'});
             }

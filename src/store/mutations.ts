@@ -4,7 +4,8 @@ import { MUTATIONS } from './mutation-types';
 
 export const mutations: MutationTree<Table> = {
   [MUTATIONS.setTable]: (state: Table, objectsName: string): any => {
-    state = new Table(objectsName);
+    state.reset();
+    state.initTable(objectsName);
   },
   [MUTATIONS.setColumns]: (state: Table, cols: Column[]): any => {
     state.setColumns(cols);

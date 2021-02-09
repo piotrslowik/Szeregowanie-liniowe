@@ -16,7 +16,7 @@
           >
             <ValidationProvider
               v-slot="{ errors, valid }"
-              rules="required|between:1,100|digits"
+              rules="required|between:10,100|digits"
               :name="column.value"
             >
               <v-text-field
@@ -24,6 +24,7 @@
                 type="number"
                 :error-messages="errors"
                 :success="valid"
+                :name="column.value"
                 min="1"
                 max="100"
                 suffix="%"

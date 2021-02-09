@@ -18,12 +18,13 @@ export const actions: ActionTree<ITable, any> = {
       row.addField(cols[2].value, 8 + Math.random() * 8);
       rows.push(row);
     }
+    commit(M.setTable, 'Nazwa');
     commit(M.setColumns, cols);
     commit(M.setRows, rows);
   },
 
   [ACTIONS.loadFromCsv] ({commit}, { headers, rows}) {
-    commit(M.setTable, headers.shift());
+    const objectsName = headers.shift();
     const headerToColumnMapper = (header: string) => new Column(header);
     const cols = headers.map(headerToColumnMapper);
     const rowsMapper = (values: string[]) => {
@@ -31,6 +32,7 @@ export const actions: ActionTree<ITable, any> = {
       values.forEach((value, i) => {
         try {
           const parsedValue = parseFloat(value);
+          if (isNaN(parsedValue)) throw false;
           row.addField(cols[i].value, parsedValue);
         } catch {
           throw new Error('Nieprawidłowe wartości w pliku');
@@ -39,6 +41,7 @@ export const actions: ActionTree<ITable, any> = {
       return row;
     }
     const processedRows = rows.map(rowsMapper);
+    commit(M.setTable, objectsName);
     commit(M.setColumns, cols);
     commit(M.setRows, processedRows);
   }
