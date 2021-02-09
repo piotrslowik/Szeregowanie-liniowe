@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 
-import { ITable } from '@/classes';
+import { Table } from '@/classes';
 
 import { state } from './state';
 import { mutations } from './mutations';
@@ -10,7 +10,7 @@ import { getters } from './getters';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store<ITable>({ 
+export default new Vuex.Store<Table>({ 
   state, mutations, actions, getters
 });
 
