@@ -3,11 +3,13 @@ import { Row } from './Row';
 export default class Column {
   public text: string
   public nameColumn: boolean
+  public weight: number
   public destimulant: boolean
 
   constructor(name: string, nameColumn: boolean = false) {
     this.text = name;
     this.nameColumn = nameColumn;
+    this.weight = 0;
     this.destimulant = false;
   }
 

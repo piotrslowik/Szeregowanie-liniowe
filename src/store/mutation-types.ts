@@ -2,6 +2,7 @@ export enum MUTATIONS {
   setTable = 'setTable',
   setColumns = 'setColumns',
   setColumnStimulant = 'setColumnStimulant',
+  setColumnWeight= 'setColumnWeight',
   addColumn = 'addColumn',
   setRows = 'setRows',
   addRow = 'addRow',

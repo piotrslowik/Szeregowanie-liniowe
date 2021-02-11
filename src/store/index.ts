@@ -11,6 +11,6 @@ import { getters } from './getters';
 Vue.use(Vuex);
 
 export default new Vuex.Store<Table>({ 
-  state, mutations, actions, getters,
+  state, mutations, actions, getters
 });
 

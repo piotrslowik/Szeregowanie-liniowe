@@ -6,6 +6,10 @@ interface ISetColumnStimulant {
   column: Column;
   destimulant: boolean;
 }
+interface ISetColumnWeight {
+  column: Column;
+  weight: number;
+}
 
 export const mutations: MutationTree<Table> = {
   [MUTATIONS.setTable]: (state: Table, objectsName: string): any => {
@@ -19,6 +23,11 @@ export const mutations: MutationTree<Table> = {
     const { column, destimulant } = args;
     const mutatedColumn = state.columns.find(col => col.value === column.value);
     if (mutatedColumn) mutatedColumn.destimulant = destimulant;
+  },
+  [MUTATIONS.setColumnWeight]: (state: Table, args: ISetColumnWeight): any => {
+    const { column, weight } = args;
+    const mutatedColumn = state.columns.find(col => col.value === column.value);
+    if (mutatedColumn) mutatedColumn.weight = weight;
   },
   [MUTATIONS.addColumn]: (state: Table, col: Column): void => {
     state.addColumn(col);
