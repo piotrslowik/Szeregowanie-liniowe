@@ -2,6 +2,11 @@ import { Table, Column, Row } from '@/classes';
 import { MutationTree } from 'vuex';
 import { MUTATIONS } from './mutation-types';
 
+interface ISetColumnStimulant {
+  column: Column;
+  destimulant: boolean;
+}
+
 export const mutations: MutationTree<Table> = {
   [MUTATIONS.setTable]: (state: Table, objectsName: string): any => {
     state.reset();
@@ -9,6 +14,11 @@ export const mutations: MutationTree<Table> = {
   },
   [MUTATIONS.setColumns]: (state: Table, cols: Column[]): any => {
     state.setColumns(cols);
+  },
+  [MUTATIONS.setColumnStimulant]: (state: Table, args: ISetColumnStimulant): any => {
+    const { column, destimulant } = args;
+    const mutatedColumn = state.columns.find(col => col.value === column.value);
+    if (mutatedColumn) mutatedColumn.destimulant = destimulant;
   },
   [MUTATIONS.addColumn]: (state: Table, col: Column): void => {
     state.addColumn(col);
