@@ -4,6 +4,7 @@
     @click="handleClick"
     :loading="isProcessing"
     min-width="120px"
+    :block="block"
   >
   <slot>
     <v-icon v-if="shouldRenderIcon" class="mr-2">
@@ -25,6 +26,7 @@ export default {
         return ['', 'error', 'success', 'processing'].includes(value);
       },
     },
+    block: Boolean,
   },
   computed: {
     buttonColor() {

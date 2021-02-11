@@ -7,10 +7,16 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <Weights />
+        <Weights ref="WeightsComponent"/>
       </v-col>
       <v-col cols="12">
         <Stimulants />
+      </v-col>
+      <v-col cols="12">
+        <Run
+          @run="checkWeights"
+          ref="RunComponent"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -20,6 +26,7 @@
 import Table from './Table.vue';
 import Weights from './Weights.vue';
 import Stimulants from './Stimulants.vue';
+import Run from './Run.vue';
 
 export default {
   name: 'Main',
@@ -27,11 +34,19 @@ export default {
     Table,
     Weights,
     Stimulants,
+    Run,
   },
-  data() {
-    return {
-
-    };
+  computed: {
+    weights() {
+      return this.$store.getters.columnsWeightsSum;
+    },
+  },
+  methods: {
+    checkWeights() {
+      const areWeightsValid = this.weights === 100;
+      if (!areWeightsValid) this.$refs.WeightsComponent.showError();
+      this.$refs.RunComponent.runCalculaion(areWeightsValid);
+    },
   },
 };
 </script>
