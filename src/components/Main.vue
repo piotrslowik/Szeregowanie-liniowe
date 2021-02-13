@@ -5,20 +5,22 @@
         <Table />
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12">
-        <Weights ref="WeightsComponent"/>
-      </v-col>
-      <v-col cols="12">
-        <Stimulants />
-      </v-col>
-      <v-col cols="12">
-        <Run
-          @run="checkWeights"
-          ref="RunComponent"
-        />
-      </v-col>
-    </v-row>
+    <v-fade-transition>
+      <v-row v-if="isTableInited">
+        <v-col cols="12">
+          <Weights ref="WeightsComponent"/>
+        </v-col>
+        <v-col cols="12">
+          <Stimulants />
+        </v-col>
+        <v-col cols="12">
+          <Run
+            @run="checkWeights"
+            ref="RunComponent"
+          />
+        </v-col>
+      </v-row>
+    </v-fade-transition>
   </v-container>
 </template>
 
@@ -37,6 +39,9 @@ export default {
     Run,
   },
   computed: {
+    isTableInited() {
+      return this.$store.getters.isTableInited; 
+    },
     weights() {
       return this.$store.getters.columnsWeightsSum;
     },

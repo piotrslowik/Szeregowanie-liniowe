@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="pt-2">
     <v-row class="px-5">
       <v-col cols="3" class="py-0">
         <ValidationObserver ref="Validator">

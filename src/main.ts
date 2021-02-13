@@ -9,7 +9,11 @@ import VuetifyConfirm from 'vuetify-confirm';
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
-Vue.use(VuetifyConfirm, { vuetify });
+Vue.use(VuetifyConfirm, { 
+  vuetify,
+  buttonTrueText: 'Tak',
+  buttonFalseText: 'Nie',
+});
 
 Vue.config.productionTip = false;
 
