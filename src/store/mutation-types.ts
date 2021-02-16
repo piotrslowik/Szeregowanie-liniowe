@@ -9,4 +9,5 @@ export enum MUTATIONS {
   deleteRow = 'deleteRow',
   editRow = 'editRow',
   addField = 'addField',
+  setMinVariantion = 'setMinVariantion',
 }

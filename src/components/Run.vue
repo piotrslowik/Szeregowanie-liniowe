@@ -39,6 +39,8 @@
 <script>
 import SubmitButton from '@/components/common/SubmitButton';
 
+import { MUTATIONS as M } from '@/store/mutation-types';
+
 export default {
   name: 'Run',
   components: {
@@ -47,8 +49,17 @@ export default {
   data() {
     return {
       submitState: '',
-      variantion: 20,
     };
+  },
+  computed: {
+    variantion: {
+      get() {
+        return this.$store.getters.minVariantion;
+      },
+      set(val) {
+        this.$store.commit(M.setMinVariantion, val);
+      },
+    },
   },
   methods: {
     async checkVariation() {

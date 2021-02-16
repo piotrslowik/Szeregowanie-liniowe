@@ -5,17 +5,20 @@ export interface ITable {
   columns: Column[];
   rows: Row[];
   objectsName: string;
+  minVariantion: number;
 }
 
 export class Table implements ITable {
   public columns: Column[];
   public rows: Row[];
   public objectsName: string;
+  public minVariantion: number;
 
   constructor() {
     this.objectsName = '';
     this.columns = [];
     this.rows = [];
+    this.minVariantion = 20;
   }
   
   initTable(objectsName: string) {

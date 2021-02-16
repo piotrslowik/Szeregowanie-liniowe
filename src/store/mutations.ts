@@ -47,4 +47,7 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.addField]: (state: Table, value: string): void => {
     state.rows.forEach(row => row.addField(value, 0));
   },
+  [MUTATIONS.setMinVariantion]: (state: Table, variantion: number): void => {
+    state.minVariantion = variantion;
+  },
 }
