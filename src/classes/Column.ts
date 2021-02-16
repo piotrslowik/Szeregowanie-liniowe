@@ -44,9 +44,24 @@ export default class Column {
     const sum = rows.reduce((acc, row) => acc += row.values[this.value], 0);
     return sum / rows.length;
   }
-  changeDestimulantToStimulant(rows: Row[]) {
+  variance(rows: Row[]): number {
+    const average = this.average(rows);
+    const sumZ = rows.reduce((acc, row) => acc += Math.pow(average - row.values[this.value], 2), 0);
+    return sumZ / rows.length;
+  }
+  standardDeviation(rows: Row[]): number {
+    return Math.sqrt(this.variance(rows));
+  }
+  getMinValue(rows: Row[]): number {
     const values = rows.map(row => row.values[this.value]);
-    const max = Math.max(...values);
+    return Math.max(...values);
+  }
+  getMaxValue(rows: Row[]): number {
+    const values = rows.map(row => row.values[this.value]);
+    return Math.min(...values);
+  }
+  changeDestimulantToStimulant(rows: Row[]) {
+    const max = this.getMaxValue(rows);
     rows.forEach(row => row.values[this.value] = max - row.values[this.value])
   }
 }
