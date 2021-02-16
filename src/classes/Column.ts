@@ -64,4 +64,9 @@ export default class Column {
     const max = this.getMaxValue(rows);
     rows.forEach(row => row.values[this.value] = max - row.values[this.value])
   }
+  variantion(rows: Row[]) {
+    const standardDeviation = this.standardDeviation(rows);
+    const average = this.average(rows);
+    return (standardDeviation / average) * 100;
+  }
 }
