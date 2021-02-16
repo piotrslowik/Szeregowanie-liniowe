@@ -21,6 +21,9 @@
         </v-col>
       </v-row>
     </v-fade-transition>
+    <v-fade-transition>
+      <Result v-if="showResult" />
+    </v-fade-transition>
   </v-container>
 </template>
 
@@ -29,6 +32,7 @@ import Table from './Table.vue';
 import Weights from './Weights.vue';
 import Stimulants from './Stimulants.vue';
 import Run from './Run.vue';
+import Result from './Result.vue';
 
 export default {
   name: 'Main',
@@ -37,6 +41,12 @@ export default {
     Weights,
     Stimulants,
     Run,
+    Result,
+  },
+  data() {
+    return {
+      showResult: false,
+    };
   },
   computed: {
     isTableInited() {
@@ -49,8 +59,9 @@ export default {
   methods: {
     checkWeights() {
       const areWeightsValid = this.weights === 100;
-      if (!areWeightsValid) this.$refs.WeightsComponent.showError();
       this.$refs.RunComponent.runCalculaion(areWeightsValid);
+      if (areWeightsValid) this.showResult = true;
+      else this.$refs.WeightsComponent.showError();
     },
   },
 };

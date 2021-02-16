@@ -10,6 +10,7 @@ export interface ITable {
 
 export class Table implements ITable {
   public columns: Column[];
+  private _minVariantionColumns: Column[];
   public rows: Row[];
   public objectsName: string;
   public minVariantion: number;
@@ -17,8 +18,13 @@ export class Table implements ITable {
   constructor() {
     this.objectsName = '';
     this.columns = [];
+    this._minVariantionColumns = [];
     this.rows = [];
     this.minVariantion = 20;
+  }
+
+  get valueColumns() {
+    return this.columns.filter(col => !col.nameColumn)
   }
   
   initTable(objectsName: string) {
@@ -32,6 +38,9 @@ export class Table implements ITable {
   }
   setColumns(columns: Column[] = []) {
     this.columns = [new Column(this.objectsName, true), ...columns];
+  }
+  setMinVariantionColumns() {
+    this._minVariantionColumns = this.valueColumns.filter(column => column.variantion(this.rows) > this.minVariantion);
   }
   addColumn(column: Column) {
     this.columns.push(column);

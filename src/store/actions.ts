@@ -13,9 +13,9 @@ export const actions: ActionTree<ITable, any> = {
     const rows = [];
     for (let i = 0; i < 20; i++) {
       const row = new Row(`Wartość #${i + 1}`);
-      row.addField(cols[0].value, 100 + Math.random() * 50);
-      row.addField(cols[1].value, 400 + Math.random() * 120);
-      row.addField(cols[2].value, 8 + Math.random() * 8);
+      row.addField(cols[0].value, 100 + Math.random() * 150);
+      row.addField(cols[1].value, 400 + Math.random() * 450);
+      row.addField(cols[2].value, 8 + Math.random() * 12);
       rows.push(row);
     }
     commit(M.setTable, 'Nazwa');
@@ -44,5 +44,9 @@ export const actions: ActionTree<ITable, any> = {
     commit(M.setTable, objectsName);
     commit(M.setColumns, cols);
     commit(M.setRows, processedRows);
+  },
+
+  [ACTIONS.runCalculation] ({commit}) {
+    commit(M.setMinVariantionColumns);
   }
 }

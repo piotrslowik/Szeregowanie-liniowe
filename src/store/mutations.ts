@@ -32,6 +32,9 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.addColumn]: (state: Table, col: Column): void => {
     state.addColumn(col);
   },
+  [MUTATIONS.setMinVariantionColumns]: (state: Table): void => {
+    state.setMinVariantionColumns();
+  },
   [MUTATIONS.setRows]: (state: Table, rows: Row[]): void => {
     state.setRows(rows);
   },

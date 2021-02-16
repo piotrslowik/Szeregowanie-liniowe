@@ -1,6 +1,7 @@
 export enum MUTATIONS {
   setTable = 'setTable',
   setColumns = 'setColumns',
+  setMinVariantionColumns = 'setMinVariantionColumns',
   setColumnStimulant = 'setColumnStimulant',
   setColumnWeight= 'setColumnWeight',
   addColumn = 'addColumn',

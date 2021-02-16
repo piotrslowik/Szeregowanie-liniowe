@@ -40,6 +40,7 @@
 import SubmitButton from '@/components/common/SubmitButton';
 
 import { MUTATIONS as M } from '@/store/mutation-types';
+import { ACTIONS as A } from '@/store/action-types';
 
 export default {
   name: 'Run',
@@ -69,8 +70,8 @@ export default {
     },
     runCalculaion(success) {
       if (success) {
-        console.log('running...')
         this.submitState = 'success';
+        this.$store.dispatch(A.runCalculation);
       }
       else {
         this.submitState = 'error';
