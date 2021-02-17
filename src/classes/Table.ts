@@ -17,6 +17,8 @@ export class Table implements ITable {
   //-------
   public objectsName: string;
   public minVariantion: number;
+  public pattern: Row;
+  public antipattern: Row;
 
   constructor() {
     this.objectsName = '';
@@ -25,6 +27,8 @@ export class Table implements ITable {
     this.rows = [];
     this.calculationRows = [];
     this.minVariantion = 20;
+    this.pattern = new Row('Wzorzec');
+    this.antipattern = new Row('Antywzorzec');
   }
 
   get valueColumns() {
@@ -84,5 +88,11 @@ export class Table implements ITable {
       standardDeviations[column.value] = column.standardDeviation(this.calculationRows);
     });
     this.calculationRows.forEach(row => Object.keys(row.values).forEach(key => row.standardizeValue(key, averages[key], standardDeviations[key])));
+  }
+  setPattern() {
+    this._minVariantionColumns.forEach(column => this.pattern.addField(column.value, column.getMaxValue(this.calculationRows)));
+  }
+  setAntipattern() {
+    this._minVariantionColumns.forEach(column => this.antipattern.addField(column.value, column.getMinValue(this.calculationRows)));
   }
 }
