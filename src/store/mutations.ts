@@ -38,6 +38,9 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.setRows]: (state: Table, rows: Row[]): void => {
     state.setRows(rows);
   },
+  [MUTATIONS.setCalculationRows]: (state: Table): void => {
+    state.setCalculationRows();
+  },
   [MUTATIONS.addRow]: (state: Table, row: Row): void => {
     state.addRow(row);
   },
@@ -55,5 +58,8 @@ export const mutations: MutationTree<Table> = {
   },
   [MUTATIONS.changeDestimulantsToStimulants]: (state: Table): void => {
     state.changeDestimulantsToStimulants();
+  },
+  [MUTATIONS.standardize]: (state: Table): void => {
+    state.standardize();
   },
 }

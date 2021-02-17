@@ -6,10 +6,12 @@ export enum MUTATIONS {
   setColumnWeight= 'setColumnWeight',
   addColumn = 'addColumn',
   setRows = 'setRows',
+  setCalculationRows = 'setCalculationRows',
   addRow = 'addRow',
   deleteRow = 'deleteRow',
   editRow = 'editRow',
   addField = 'addField',
   setMinVariantion = 'setMinVariantion',
   changeDestimulantsToStimulants = 'changeDestimulantsToStimulants',
+  standardize= 'standardize',
 }

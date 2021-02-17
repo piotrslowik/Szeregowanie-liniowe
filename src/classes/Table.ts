@@ -1,5 +1,5 @@
 import Column from './Column';
-import { Row } from './Row';
+import { Row, IRowValue } from './Row';
 
 export interface ITable {
   columns: Column[];
@@ -12,7 +12,9 @@ export class Table implements ITable {
   public columns: Column[];
   private _minVariantionColumns: Column[];
   public rows: Row[];
-  private _stimulantRows: Row[];
+  // public for WIP only
+  public calculationRows: Row[];
+  //-------
   public objectsName: string;
   public minVariantion: number;
 
@@ -21,7 +23,7 @@ export class Table implements ITable {
     this.columns = [];
     this._minVariantionColumns = [];
     this.rows = [];
-    this._stimulantRows = [];
+    this.calculationRows = [];
     this.minVariantion = 20;
   }
 
@@ -62,8 +64,25 @@ export class Table implements ITable {
     rowsCopy[index] = row;
     this.rows = rowsCopy;
   }
+  setCalculationRows() {
+    this.calculationRows = this.rows.map(row => {
+      const newRow = new Row(row.name);
+      this._minVariantionColumns.forEach(column => newRow.addField(column.value, row.values[column.value]));
+      return newRow;
+    });
+  }
   changeDestimulantsToStimulants() {
-    this._stimulantRows = this.rows.map(row => row);
-    this.columns.forEach(column => column.changeDestimulantToStimulant(this._stimulantRows));
+    this._minVariantionColumns
+      .filter(column => column.destimulant)
+      .forEach(column => column.changeDestimulantToStimulant(this.calculationRows));
+  }
+  standardize() {
+    const averages: IRowValue = {};
+    const standardDeviations: IRowValue = {};
+    this._minVariantionColumns.forEach(column => {
+      averages[column.value] = column.average(this.calculationRows);
+      standardDeviations[column.value] = column.standardDeviation(this.calculationRows);
+    });
+    this.calculationRows.forEach(row => Object.keys(row.values).forEach(key => row.standardizeValue(key, averages[key], standardDeviations[key])));
   }
 }

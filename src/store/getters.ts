@@ -17,4 +17,7 @@ export const getters: GetterTree<Table, any> = {
     value: column.value,
     variantion: column.variantion(state.rows),
   })),
+  // WIP only
+  calcRows: (state: Table): Row[] => state.calculationRows,
+  //---------
 }

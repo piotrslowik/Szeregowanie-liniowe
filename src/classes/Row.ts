@@ -18,8 +18,10 @@ export class Row {
   addField(field: string, value: number = 0) {
     this.values[field] = value;
   }
-
   deleteField(field: string) {
     delete this.values[field];
+  }
+  standardizeValue(field: string, average: number, standardDeviation: number) {
+    this.values[field] = (this.values[field] - average) / standardDeviation;
   }
 }

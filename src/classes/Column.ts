@@ -54,11 +54,11 @@ export default class Column {
   }
   getMinValue(rows: Row[]): number {
     const values = rows.map(row => row.values[this.value]);
-    return Math.max(...values);
+    return Math.min(...values);
   }
   getMaxValue(rows: Row[]): number {
     const values = rows.map(row => row.values[this.value]);
-    return Math.min(...values);
+    return Math.max(...values);
   }
   changeDestimulantToStimulant(rows: Row[]) {
     const max = this.getMaxValue(rows);

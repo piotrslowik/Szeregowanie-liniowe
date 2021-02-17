@@ -48,6 +48,8 @@ export const actions: ActionTree<ITable, any> = {
 
   [ACTIONS.runCalculation] ({commit}) {
     commit(M.setMinVariantionColumns);
+    commit(M.setCalculationRows);
     commit(M.changeDestimulantsToStimulants);
+    commit(M.standardize);
   },
 }
