@@ -12,6 +12,7 @@ export class Table implements ITable {
   public columns: Column[];
   private _minVariantionColumns: Column[];
   public rows: Row[];
+  private _stimulantRows: Row[];
   public objectsName: string;
   public minVariantion: number;
 
@@ -20,6 +21,7 @@ export class Table implements ITable {
     this.columns = [];
     this._minVariantionColumns = [];
     this.rows = [];
+    this._stimulantRows = [];
     this.minVariantion = 20;
   }
 
@@ -59,5 +61,9 @@ export class Table implements ITable {
     const rowsCopy = this.rows.map(val => val);
     rowsCopy[index] = row;
     this.rows = rowsCopy;
+  }
+  changeDestimulantsToStimulants() {
+    this._stimulantRows = this.rows.map(row => row);
+    this.columns.forEach(column => column.changeDestimulantToStimulant(this._stimulantRows));
   }
 }

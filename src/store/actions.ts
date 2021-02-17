@@ -48,5 +48,6 @@ export const actions: ActionTree<ITable, any> = {
 
   [ACTIONS.runCalculation] ({commit}) {
     commit(M.setMinVariantionColumns);
-  }
+    commit(M.changeDestimulantsToStimulants);
+  },
 }

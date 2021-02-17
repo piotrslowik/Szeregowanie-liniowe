@@ -11,4 +11,5 @@ export enum MUTATIONS {
   editRow = 'editRow',
   addField = 'addField',
   setMinVariantion = 'setMinVariantion',
+  changeDestimulantsToStimulants = 'changeDestimulantsToStimulants',
 }

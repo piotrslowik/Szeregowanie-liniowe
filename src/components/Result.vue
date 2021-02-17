@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Variantions from './results/Variantions';
+import Variantions from './results/Variantions.vue';
 
 export default {
   name: 'Result',

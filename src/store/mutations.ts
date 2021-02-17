@@ -53,4 +53,7 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.setMinVariantion]: (state: Table, variantion: number): void => {
     state.minVariantion = variantion;
   },
+  [MUTATIONS.changeDestimulantsToStimulants]: (state: Table): void => {
+    state.changeDestimulantsToStimulants();
+  },
 }
