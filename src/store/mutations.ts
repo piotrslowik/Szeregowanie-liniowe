@@ -72,4 +72,7 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.setSyntheticMeasuresOfDevelopment]: (state: Table): void => {
     state.setSMDs();
   },
+  [MUTATIONS.setChartData]: (state: Table): void => {
+    state.setChartData();
+  },
 }

@@ -1,4 +1,5 @@
 import { Column, Table, Row } from '@/classes';
+import { IChartData } from '@/classes/Table';
 import { GetterTree } from 'vuex';
 
 export interface IColumnVariantion {
@@ -19,7 +20,5 @@ export const getters: GetterTree<Table, any> = {
     value: column.value,
     variantion: column.variantion(state.rows),
   })),
-  // WIP only
-  calcRows: (state: Table): Row[] => state.calculationRows,
-  //---------
+  chartData: (state: Table): IChartData[] => state.chartData,
 }

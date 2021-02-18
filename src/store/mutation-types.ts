@@ -17,4 +17,5 @@ export enum MUTATIONS {
   setPatternAndAntipattern = 'setPatternAndAntipattern',
   weighValues = 'weighValues',
   setSyntheticMeasuresOfDevelopment = 'setSyntheticMeasuresOfDevelopment',
+  setChartData = 'setChartData',
 }
