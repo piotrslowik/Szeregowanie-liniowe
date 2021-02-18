@@ -17,8 +17,8 @@ export class Table implements ITable {
   //-------
   public objectsName: string;
   public minVariantion: number;
-  public pattern: Row;
-  public antipattern: Row;
+  private _pattern: Row;
+  private _antipattern: Row;
 
   constructor() {
     this.objectsName = '';
@@ -26,13 +26,16 @@ export class Table implements ITable {
     this._minVariantionColumns = [];
     this.rows = [];
     this.calculationRows = [];
-    this.minVariantion = 20;
-    this.pattern = new Row('Wzorzec');
-    this.antipattern = new Row('Antywzorzec');
+    this.minVariantion = 0;
+    this._pattern = new Row('Wzorzec');
+    this._antipattern = new Row('Antywzorzec');
   }
 
-  get valueColumns() {
+  get valueColumns(): Column[] {
     return this.columns.filter(col => !col.nameColumn)
+  }
+  private get _allCalculationRows(): Row[] {
+    return [...this.calculationRows, this._pattern, this._antipattern];
   }
   
   initTable(objectsName: string) {
@@ -48,7 +51,7 @@ export class Table implements ITable {
     this.columns = [new Column(this.objectsName, true), ...columns];
   }
   setMinVariantionColumns() {
-    this._minVariantionColumns = this.valueColumns.filter(column => column.variantion(this.rows) > this.minVariantion);
+    this._minVariantionColumns = this.valueColumns.filter(column => column.variantion(this.rows) >= this.minVariantion);
   }
   addColumn(column: Column) {
     this.columns.push(column);
@@ -90,9 +93,21 @@ export class Table implements ITable {
     this.calculationRows.forEach(row => Object.keys(row.values).forEach(key => row.standardizeValue(key, averages[key], standardDeviations[key])));
   }
   setPattern() {
-    this._minVariantionColumns.forEach(column => this.pattern.addField(column.value, column.getMaxValue(this.calculationRows)));
+    this._minVariantionColumns.forEach(column => this._pattern.addField(column.value, column.getMaxValue(this.calculationRows)));
   }
   setAntipattern() {
-    this._minVariantionColumns.forEach(column => this.antipattern.addField(column.value, column.getMinValue(this.calculationRows)));
+    this._minVariantionColumns.forEach(column => this._antipattern.addField(column.value, column.getMinValue(this.calculationRows)));
+  }
+  weighValues() {
+    this.calculationRows.forEach(row => {
+      this._minVariantionColumns.forEach(column => {
+        row.weighValue(column.value, column.weight);
+      });
+    });
+  }
+  // change name!
+  setSMDs() {
+    this._allCalculationRows.forEach(row => row.setQi());
+    this.calculationRows.forEach(row => row.setDi(this._pattern, this._antipattern));
   }
 }

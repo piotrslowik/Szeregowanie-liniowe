@@ -62,4 +62,14 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.standardize]: (state: Table): void => {
     state.standardize();
   },
+  [MUTATIONS.setPatternAndAntipattern]: (state: Table): void => {
+    state.setPattern();
+    state.setAntipattern();
+  },
+  [MUTATIONS.weighValues]: (state: Table): void => {
+    state.weighValues();
+  },
+  [MUTATIONS.setSyntheticMeasuresOfDevelopment]: (state: Table): void => {
+    state.setSMDs();
+  },
 }

@@ -51,5 +51,8 @@ export const actions: ActionTree<ITable, any> = {
     commit(M.setCalculationRows);
     commit(M.changeDestimulantsToStimulants);
     commit(M.standardize);
+    commit(M.setPatternAndAntipattern);
+    commit(M.weighValues);
+    commit(M.setSyntheticMeasuresOfDevelopment);
   },
 }

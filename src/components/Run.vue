@@ -9,7 +9,7 @@
             name="variation"
           >
             <v-text-field
-              v-model="variantion"
+              v-model="minVariantion"
               label="Współczynnik minimalnej zmienności"
               type="number"
               :error-messages="errors"
@@ -49,18 +49,9 @@ export default {
   },
   data() {
     return {
+      minVariantion: 20,
       submitState: '',
     };
-  },
-  computed: {
-    variantion: {
-      get() {
-        return this.$store.getters.minVariantion;
-      },
-      set(val) {
-        this.$store.commit(M.setMinVariantion, val);
-      },
-    },
   },
   methods: {
     async checkVariation() {
@@ -71,6 +62,7 @@ export default {
     runCalculaion(success) {
       if (success) {
         this.submitState = 'success';
+        this.$store.commit(M.setMinVariantion, this.minVariantion);
         this.$store.dispatch(A.runCalculation);
       }
       else {

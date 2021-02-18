@@ -13,5 +13,8 @@ export enum MUTATIONS {
   addField = 'addField',
   setMinVariantion = 'setMinVariantion',
   changeDestimulantsToStimulants = 'changeDestimulantsToStimulants',
-  standardize= 'standardize',
+  standardize = 'standardize',
+  setPatternAndAntipattern = 'setPatternAndAntipattern',
+  weighValues = 'weighValues',
+  setSyntheticMeasuresOfDevelopment = 'setSyntheticMeasuresOfDevelopment',
 }

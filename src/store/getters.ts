@@ -2,6 +2,7 @@ import { Column, Table, Row } from '@/classes';
 import { GetterTree } from 'vuex';
 
 export interface IColumnVariantion {
+  text: string;
   value: string;
   variantion: number;
 }
@@ -14,6 +15,7 @@ export const getters: GetterTree<Table, any> = {
   columnsWeightsSum: (state: Table): number => state.columns.filter(col => !col.nameColumn).reduce((acc, col) => acc += col.weight, 0),
   minVariantion: (state: Table): number => state.minVariantion,
   variantions: (state: Table): IColumnVariantion[] => state.valueColumns.map(column => ({
+    text: column.text,
     value: column.value,
     variantion: column.variantion(state.rows),
   })),

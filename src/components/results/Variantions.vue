@@ -14,7 +14,7 @@
           :key="column.value"
         >
           <v-text-field
-            :label="column.value"
+            :label="column.text"
             :value="`${column.variantion.toFixed(2)}%`"
             readonly
             outlined
