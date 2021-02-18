@@ -30,7 +30,7 @@ export default {
       return this.$store.getters.chartData;
     },
     labels() {
-      return this.$store.getters.rows.map(row => row.name);
+      return this.$store.getters.chartLabels;
     },
     chartdata() {
       return {
@@ -47,8 +47,13 @@ export default {
       };
     },
   },
-  mounted () {
+  mounted() {
     this.renderChart(this.chartdata, this.options);
   },
-}
+  watch: {
+    data() {
+      this.renderChart(this.chartdata, this.options);
+    },
+  },
+};
 </script>

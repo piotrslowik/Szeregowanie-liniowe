@@ -21,4 +21,5 @@ export const getters: GetterTree<Table, any> = {
     variantion: column.variantion(state.rows),
   })),
   chartData: (state: Table): IChartData[] => state.chartData,
+  chartLabels: (state: Table): string[] => state.chartData.map(val => val.y),
 }

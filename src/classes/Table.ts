@@ -119,5 +119,6 @@ export class Table implements ITable {
       y: row.name,
       x: row.values['di'],
     }));
+    this.chartData.sort((val1, val2) => val2.x - val1.x);
   }
 }
