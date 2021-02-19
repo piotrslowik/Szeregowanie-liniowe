@@ -24,21 +24,8 @@
                 name="nazwa"
               >
                 <v-text-field
-                  label="Nazwa wyświetlana"
-                  v-model="form.text"
-                  :error-messages="errors"
-                  :success="valid"
-                  outlined
-                />
-              </ValidationProvider>
-              <ValidationProvider
-                v-slot="{ errors, valid }"
-                rules="required"
-                name="zmienna"
-              >
-                <v-text-field
-                  label="Zmienna"
-                  v-model="form.value"
+                  label="Nazwa"
+                  v-model="name"
                   :error-messages="errors"
                   :success="valid"
                   outlined
@@ -64,6 +51,7 @@ import SubmitButton from '@/components/common/SubmitButton.vue';
 import TooltipButton from '@/components/common/TooltipButton.vue';
 
 import { MUTATIONS as M } from '@/store/mutation-types';
+import { ACTIONS as A } from '@/store/action-types';
 import { Column } from '@/classes';
 
 export default {
@@ -75,10 +63,7 @@ export default {
   data() {
     return {
       dialog: false,
-      form: {
-        text: '',
-        value: '',
-      },
+      name: '',
       submitState: '',
     };
   },
@@ -86,15 +71,20 @@ export default {
     async addColumn() {
       const isValid = await this.$refs.Validator.validate();
       if (isValid) {
-        const { text, value } = this.form;
-        const newColumn = new Column(text, value);
-        this.$store.commit(M.addColumn, newColumn);
-        this.$store.commit(M.addField, value);
-        this.submitState = 'success';
-        setTimeout(() => {
-          this.dialog = false;
-          this.resetForm();
-        }, 2000);
+        if (await this.nameExists()) {
+          this.$refs.Validator.setErrors({nazwa: 'Istnieje kolumna o zbyt podobnej nazwie'});
+          this.submitState = 'error';
+        }
+        else {
+          const newColumn = new Column(this.name);
+          this.$store.commit(M.addColumn, newColumn);
+          this.$store.commit(M.addField, newColumn.value);
+          this.submitState = 'success';
+          setTimeout(() => {
+            this.dialog = false;
+            this.resetForm();
+          }, 200);
+        }
       } else {
         this.submitState = 'error';
       }
@@ -102,6 +92,9 @@ export default {
     resetForm() {
       this.$refs.Form.reset();
       this.$refs.Validator.reset();
+    },
+    async nameExists() {
+      return await this.$store.dispatch(A.getColumnValue, this.name);
     },
   },
 };

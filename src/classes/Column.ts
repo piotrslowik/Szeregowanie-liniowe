@@ -16,16 +16,18 @@ export default class Column {
   get value(): string {
     return this.nameColumn
       ? 'name'
-      : this.createValue(this.text);
+      : Column.createValue(this.text);
   }
-  private createValue(name: string): string {
-    const  newName = name
-    .trim()
-    .replaceAll(/\.|,|\?|\/|\\|;|;|'|"|\[|\]|\{|\}|<|>|!|@|#|\$|%|\^|&|\*|\(|\)| /g, '_')
-    .toLowerCase();
-    return this.deletePolishChars(newName);
+  static createValue(name: string): string {
+    return this.deletePolishChars(this.sanitazeName(name));
   }
-  private deletePolishChars(name: string): string {
+  private static sanitazeName(name: string): string {
+    return name
+      .trim()
+      .replaceAll(/\.|,|\?|\/|\\|;|;|'|"|\[|\]|\{|\}|<|>|!|@|#|\$|%|\^|&|\*|\(|\)| /g, '_')
+      .toLowerCase();
+  }
+  private static deletePolishChars(name: string): string {
     return name
       .replaceAll('ą', 'a')
       .replaceAll('ć', 'c')

@@ -60,4 +60,11 @@ export const actions: ActionTree<ITable, any> = {
     commit(M.setSyntheticMeasuresOfDevelopment);
     commit(M.setChartData);
   },
+
+  [ACTIONS.getColumnValue] ({getters}, name: string) {
+    const columnsValuesMapper = (column: Column) => column.value;
+    const columnValues = getters.columns.map(columnsValuesMapper);
+    const newColumnValue = Column.createValue(name);
+    return columnValues.includes(newColumnValue);
+  },
 }
