@@ -6,16 +6,20 @@ import { MUTATIONS as M } from './mutation-types';
 export const actions: ActionTree<ITable, any> = {
   [ACTIONS.createExample] ({commit}) {
     const cols = [
-      new Column('Wartość 1'),
-      new Column('Wartość 2'),
-      new Column('Wartość 3'),
+      new Column('Zmienna 1'),
+      new Column('Zmienna 2'),
+      new Column('Zmienna 3'),
+      new Column('Zmienna 4'),
+      new Column('Zmienna 5'),
     ];
     const rows = [];
     for (let i = 0; i < 20; i++) {
       const row = new Row(`Wartość #${i + 1}`);
-      row.addField(cols[0].value, 100 + Math.random() * 150);
-      row.addField(cols[1].value, 400 + Math.random() * 450);
-      row.addField(cols[2].value, 8 + Math.random() * 12);
+      row.addField(cols[0].value, 100 + Math.random() * 250);
+      row.addField(cols[1].value, 400 + Math.random() * 500);
+      row.addField(cols[2].value, 8 + Math.floor(Math.random() * 20));
+      row.addField(cols[3].value, 200 + Math.random() * 320);
+      row.addField(cols[4].value, 20 + Math.floor(Math.random() * 100));
       rows.push(row);
     }
     commit(M.setTable, 'Nazwa');
