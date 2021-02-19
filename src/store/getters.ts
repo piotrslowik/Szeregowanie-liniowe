@@ -22,4 +22,8 @@ export const getters: GetterTree<Table, any> = {
   })),
   chartData: (state: Table): IChartData[] => state.chartData,
   chartLabels: (state: Table): string[] => state.chartData.map(val => val.y),
+  threeBest: (state: Table): string[] => {
+    if (state.chartData.length == 2) return [state.chartData[0].y, state.chartData[1].y];
+    else return [state.chartData[0].y, state.chartData[1].y, state.chartData[2].y];
+  }
 }

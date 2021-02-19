@@ -50,7 +50,13 @@ export class Table implements ITable {
   reset() {
     this.objectsName = '';
     this.columns = [];
+    this._minVariantionColumns = [];
     this.rows = [];
+    this._calculationRows = [];
+    this.minVariantion = 0;
+    this._pattern = new Row('Wzorzec');
+    this._antipattern = new Row('Antywzorzec');
+    this.chartData = [];
   }
   setColumns(columns: Column[] = []) {
     this.columns = [new Column(this.objectsName, true), ...columns];
