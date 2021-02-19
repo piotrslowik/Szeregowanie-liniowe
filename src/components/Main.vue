@@ -49,6 +49,9 @@ export default {
     };
   },
   computed: {
+    rows() {
+      return this.$store.getters.rows;
+    },
     isTableInited() {
       return this.$store.getters.isTableInited; 
     },
@@ -62,6 +65,14 @@ export default {
       this.$refs.RunComponent.runCalculaion(areWeightsValid);
       if (areWeightsValid) this.showResult = true;
       else this.$refs.WeightsComponent.showError();
+    },
+  },
+  watch: {
+    rows: {
+      handler() {
+        this.showResult = false;
+      },
+      deep: true,
     },
   },
 };
