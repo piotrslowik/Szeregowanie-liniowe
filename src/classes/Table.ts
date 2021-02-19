@@ -98,13 +98,15 @@ export class Table implements ITable {
     this._calculationRows.forEach(row => Object.keys(row.values).forEach(key => row.standardizeValue(key, averages[key], standardDeviations[key])));
   }
   setPattern() {
+    this._pattern = new Row('Wzorzec');
     this._minVariantionColumns.forEach(column => this._pattern.addField(column.value, column.getMaxValue(this._calculationRows)));
   }
   setAntipattern() {
+    this._antipattern = new Row('Antywzorzec');
     this._minVariantionColumns.forEach(column => this._antipattern.addField(column.value, column.getMinValue(this._calculationRows)));
   }
   weighValues() {
-    this._calculationRows.forEach(row => {
+    this._allCalculationRows.forEach(row => {
       this._minVariantionColumns.forEach(column => {
         row.weighValue(column.value, column.weight);
       });
