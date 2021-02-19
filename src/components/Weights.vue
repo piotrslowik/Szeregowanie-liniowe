@@ -3,7 +3,7 @@
     <v-card-title>
       Wagi
     </v-card-title>
-    <v-card-text class="px-lg-12">
+    <v-card-text class="px-lg-12 pb-2">
       <ValidationObserver ref="Validator">
         <v-row>
           <v-col

@@ -1,7 +1,7 @@
 <template>
   <v-card class="pt-2">
     <v-row class="px-5">
-      <v-col cols="3" class="py-0">
+      <v-col cols="7" sm="6" md="3" class="py-0">
         <ValidationObserver ref="Validator">
           <ValidationProvider
             v-slot="{ errors }"
@@ -23,7 +23,7 @@
           </ValidationProvider>
         </ValidationObserver>
       </v-col>
-      <v-col cols="9">
+      <v-col cols="5" sm="6" md="9">
         <SubmitButton
           :state.sync="submitState"
           block

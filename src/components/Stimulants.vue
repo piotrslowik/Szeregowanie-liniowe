@@ -3,7 +3,7 @@
     <v-card-title>
       Stymulanty
     </v-card-title>
-    <v-card-text class="px-lg-12">
+    <v-card-text class="px-lg-12 pb-2">
       <v-row>
         <v-col
           cols="6"

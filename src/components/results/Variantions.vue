@@ -3,7 +3,7 @@
     <v-card-title>
       Współczynniki zmienności
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pb-0">
       <v-row>
         <v-col
           cols="6"
@@ -12,6 +12,7 @@
           lg="2"
           v-for="column in variantions"
           :key="column.value"
+          class="pb-0"
         >
           <v-text-field
             :label="column.text"

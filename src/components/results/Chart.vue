@@ -7,25 +7,38 @@ export default {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: { display: false },
+      legend: {
+        display: false,
+      },
       title: {
         display: false,
       },
       scales: {
         xAxes: [{
-          stacked: true,
           ticks: {
             suggestedMin: 0,
             suggestedMax: 1,
+            fontColor: '#999',
+          },
+          gridLines: {
+            color: 'rgba(128, 128, 128, 0.2)',
           },
         }],
         yAxes: [{
-          stacked: true,
+          ticks: {
+            fontColor: '#999',
+          },
+          gridLines: {
+            color: 'rgba(128, 128, 128, 0.4)',
+          },
         }],
-      } 
+      },
     },
   }),
   computed: {
+    isDark() {
+      return this.$vuetify.theme.dark;
+    },
     data() {
       return this.$store.getters.chartData;
     },

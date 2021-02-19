@@ -3,7 +3,7 @@
     <v-card-title>
       Najwyższe wyniki
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pb-1">
       <p class="text-h4">
         1. {{ best[0] }}
       </p>
