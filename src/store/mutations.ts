@@ -10,6 +10,10 @@ interface ISetColumnWeight {
   column: Column;
   weight: number;
 }
+interface IChangeColumnName {
+  col: Column;
+  name: string;
+}
 
 export const mutations: MutationTree<Table> = {
   [MUTATIONS.setTable]: (state: Table, objectsName: string): any => {
@@ -31,6 +35,15 @@ export const mutations: MutationTree<Table> = {
   },
   [MUTATIONS.addColumn]: (state: Table, col: Column): void => {
     state.addColumn(col);
+  },
+  [MUTATIONS.changeColumnName]: (state: Table, args: IChangeColumnName): void => {
+    const { col, name } = args;
+    const column = state.columns.find(column => column.value === col.value);
+    column?.changeName(name);
+  },
+  [MUTATIONS.deleteColumn]: (state: Table, col: Column): void => {
+    const newColumns = state.columns.filter(column => column.value !== col.value);
+    state.columns = newColumns;
   },
   [MUTATIONS.setMinVariantionColumns]: (state: Table): void => {
     state.setMinVariantionColumns();

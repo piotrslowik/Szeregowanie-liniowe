@@ -14,6 +14,10 @@
             </v-slide-y-transition>
             <span class="mx-3" />
             <v-slide-y-transition>
+                <EditColumnsDialog v-if="isTableInited" />
+            </v-slide-y-transition>
+            <span class="mx-1" />
+            <v-slide-y-transition>
                 <NewColumnDialog v-if="isTableInited" />
             </v-slide-y-transition>
             <span class="mx-1" />
@@ -69,6 +73,7 @@
 <script lang="ts">
 import TooltipButton from './common/TooltipButton.vue';
 import NewColumnDialog from './dialogs/NewColumnDialog.vue';
+import EditColumnsDialog from './dialogs/EditColumnsDialog.vue';
 import NewRowDialog from './dialogs/NewRowDialog.vue';
 import EditRowDialog from './dialogs/EditRowDialog.vue';
 import TooltipIcon from './common/TooltipIcon.vue';
@@ -83,6 +88,7 @@ import { Component, Vue } from 'vue-property-decorator';
     components: {
         TooltipButton,
         NewColumnDialog,
+        EditColumnsDialog,
         NewRowDialog,
         TooltipIcon,
         EditRowDialog,
@@ -118,12 +124,9 @@ export default class Table extends Vue {
             }
         ));
     }
-    deleteItem(item: Row) {
-        this.$confirm(`Czy chcesz usunąć wiersz ${item.name}?`)
-            .then(() => {
-                this.$store.commit(M.deleteRow, item);
-            })
-            .catch(() => {})
+    async deleteItem(item: Row) {
+      const confirmed = await this.$confirm(`Czy chcesz usunąć wiersz ${item.name}?`)
+      if (confirmed) this.$store.commit(M.deleteRow, item)
     }
     editItem(item: Row) {
         this.showEditRowDialog = true;

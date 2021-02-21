@@ -5,6 +5,8 @@ export enum MUTATIONS {
   setColumnStimulant = 'setColumnStimulant',
   setColumnWeight= 'setColumnWeight',
   addColumn = 'addColumn',
+  deleteColumn = 'deleteColumn',
+  changeColumnName = 'changeColumnName',
   setRows = 'setRows',
   setCalculationRows = 'setCalculationRows',
   addRow = 'addRow',
