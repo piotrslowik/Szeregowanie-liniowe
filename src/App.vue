@@ -1,7 +1,7 @@
 <template>
   <v-app :style="{background: backgroundColor}">
     <v-sheet
-      id="scrolling-techniques-6"
+      id="scrolling-sheet"
       class="overflow-y-auto"
       :max-height="maxHeight"
       :style="{background: backgroundColor}"

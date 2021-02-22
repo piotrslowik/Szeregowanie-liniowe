@@ -3,17 +3,17 @@
     dense
     app
     color="primary"
-    :collapse="collapse"
-    collapse-on-scroll
-    scroll-target="#scrolling-techniques-6"
+    :collapse="collapse || collapseOnScroll"
+    :collapse-on-scroll="collapseOnScroll"
+    scroll-target="#scrolling-sheet"
   >
     <v-icon
       large
       dark
-      @click="collapse = !collapse"
+      @click="colps"
       class="ml-3 mr-8"
     >
-      mdi-cog
+      {{ collapse ? 'mdi-cog' : 'mdi-cog-outline' }}
     </v-icon>
 
     <v-toolbar-title>
@@ -57,10 +57,16 @@ export default {
   },
   data() {
     return {
-      collapse: false,
+      collapse: true,
+      collapseOnScroll: true,
     };
   },
   methods: {
+    colps() {
+      console.log('this.collapse')
+      this.collapse = !this.collapse;
+      this.collapseOnScroll = !this.collapseOnScroll;
+    },
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
