@@ -8,7 +8,7 @@
                 v-bind="attrs"
                 v-on="on"
             >
-                Wczytaj CSV
+                <span class="d-none d-sm-flex">Wczytaj CSV</span>
                 <v-icon right>
                     mdi-file-delimited-outline
                 </v-icon>

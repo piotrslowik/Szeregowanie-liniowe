@@ -1,9 +1,15 @@
 <template>
   <v-app :style="{background: backgroundColor}">
-    <AppBar />
-    <v-main>
-      <Main />
-    </v-main>
+    <v-sheet
+      id="scrolling-techniques-6"
+      class="overflow-y-auto"
+      :max-height="maxHeight"
+    >
+      <AppBar />
+      <v-main>
+        <Main />
+      </v-main>
+    </v-sheet>
   </v-app>
 </template>
 
@@ -18,6 +24,9 @@ export default {
     Main
   },
   computed: {
+    maxHeight() {
+      return window.innerHeight; 
+    },
     backgroundColor() {
       const isDark = this.$vuetify.theme.dark;
       return isDark
@@ -27,3 +36,7 @@ export default {
   },
 };
 </script>
+
+<style>
+html { overflow-y: hidden }
+</style>

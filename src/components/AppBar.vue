@@ -4,39 +4,45 @@
     app
     color="primary"
     :collapse="collapse"
+    collapse-on-scroll
+    scroll-target="#scrolling-techniques-6"
   >
     <v-icon
       large
       dark
-      class="mr-12 ml-3"
       @click="collapse = !collapse"
+      class="ml-3 mr-8"
     >
       mdi-cog
     </v-icon>
 
-    <v-btn
-      class="ml-6"
-      @click="toggleTheme"
-    >
-      motyw
-      <v-icon right>
-        mdi-theme-light-dark
-      </v-icon>
-    </v-btn>
+    <v-toolbar-title>
 
-    <v-btn
-      class="ml-6"
-      @click="setDemo"
-    >
-      Przykład
-      <v-icon right>
-        mdi-head-question-outline
-      </v-icon>
-    </v-btn>
-    
-    <span class="ml-6">
-      <CsvDialog />
-    </span>
+      <v-btn
+        class="ml-2"
+        @click="toggleTheme"
+      >
+        <span class="d-none d-sm-flex">motyw</span>
+        <v-icon right>
+          mdi-theme-light-dark
+        </v-icon>
+      </v-btn>
+
+      <v-btn
+        class="ml-6"
+        @click="setDemo"
+      >
+        <span class="d-none d-sm-flex">Przykład</span>
+        <v-icon right>
+          mdi-head-question-outline
+        </v-icon>
+      </v-btn>
+      
+      <span class="ml-6">
+        <CsvDialog />
+      </span>
+
+    </v-toolbar-title>
   </v-app-bar> 
 </template>
 
