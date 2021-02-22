@@ -82,6 +82,16 @@ export class Table implements ITable {
     rowsCopy[index] = row;
     this.rows = rowsCopy;
   }
+  changeRowsFieldName(oldField: string, newField: string) {
+    const rowsCopy = this.rows.map(val => val);
+    rowsCopy.forEach(row => row.changeFieldName(oldField, newField));
+    this.rows = rowsCopy;
+  }
+  deleteRowsField(field: string) {
+    const rowsCopy = this.rows.map(val => val);
+    rowsCopy.forEach(row => row.deleteField(field));
+    this.rows = rowsCopy;
+  }
   setCalculationRows() {
     this._calculationRows = this.rows.map(row => {
       const newRow = new Row(row.name);

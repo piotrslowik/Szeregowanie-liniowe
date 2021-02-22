@@ -21,6 +21,10 @@ export class Row {
   deleteField(field: string) {
     delete this.values[field];
   }
+  changeFieldName(oldField: string, newField: string) {
+    this.values[newField] = this.values[oldField];
+    delete this.values[oldField];
+  }
   standardizeValue(field: string, average: number, standardDeviation: number) {
     this.values[field] = (this.values[field] - average) / standardDeviation;
   }

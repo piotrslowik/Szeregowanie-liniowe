@@ -39,11 +39,16 @@ export const mutations: MutationTree<Table> = {
   [MUTATIONS.changeColumnName]: (state: Table, args: IChangeColumnName): void => {
     const { col, name } = args;
     const column = state.columns.find(column => column.value === col.value);
-    column?.changeName(name);
+    if (column) {
+      const newField = Column.createValue(name)
+      state.changeRowsFieldName(col.value, newField);
+      column.changeName(name);
+    }
   },
   [MUTATIONS.deleteColumn]: (state: Table, col: Column): void => {
     const newColumns = state.columns.filter(column => column.value !== col.value);
     state.columns = newColumns;
+    state.deleteRowsField(col.value);
   },
   [MUTATIONS.setMinVariantionColumns]: (state: Table): void => {
     state.setMinVariantionColumns();

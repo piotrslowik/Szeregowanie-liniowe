@@ -19,6 +19,7 @@
             <ValidationProvider
               v-for="column in columns"
               :key="column.value"
+              v-slot="{ errors }"
               rules="required"
               :name="column.text"
             >
@@ -27,6 +28,7 @@
                 outlined
                 v-model="form[column.value]"
                 :name="column.text"
+                :error-messages="errors"
               >
                 <template #append-outer>
                   <TooltipIcon
@@ -51,8 +53,20 @@
             </ValidationProvider>
           </ValidationObserver>
         </v-card-text>
-        <v-card-actions v-if="message">
-          {{ message }}
+        <v-card-actions
+          class="px-4 py-0"
+        >
+          <v-slide-y-reverse-transition>
+            <v-alert
+              v-if="message"
+              type="error"
+              outlined
+              width="100%"
+              class="my-3"
+            >
+              {{ message }} 
+            </v-alert>
+         </v-slide-y-reverse-transition>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -88,10 +102,9 @@ export default {
     async editItem(column) {
       const isValid = await this.$refs.Validator.validate();
       if (isValid) {
-        if (await this.nameExists(column.text)) {
+        if (await this.nameExists(this.form[column.value])) {
           this.$refs.Validator.setErrors({[column.text]: 'Istnieje kolumna o zbyt podobnej nazwie'});
-          this.message = 'error';
-                console.log('editItem')
+          this.message = 'Istnieje kolumna o zbyt podobnej nazwie';
         }
         else {
           this.$store.commit(M.changeColumnName, {
@@ -101,7 +114,7 @@ export default {
         }
       }
       else {
-        this.message = 'error';
+        this.message = 'Nie podano nazwy';
       }
     },
     async deleteItem(column) {
