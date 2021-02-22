@@ -4,6 +4,7 @@
       id="scrolling-techniques-6"
       class="overflow-y-auto"
       :max-height="maxHeight"
+      :style="{background: backgroundColor}"
     >
       <AppBar />
       <v-main>
@@ -30,7 +31,7 @@ export default {
     backgroundColor() {
       const isDark = this.$vuetify.theme.dark;
       return isDark
-        ? undefined
+        ? this.$vuetify.theme.themes.dark.background
         : this.$vuetify.theme.themes.light.background;
     },
   },

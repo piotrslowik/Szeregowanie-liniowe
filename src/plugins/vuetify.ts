@@ -21,6 +21,7 @@ export default new Vuetify({
                 secondary: colors.blue.darken3,
                 error: colors.red.accent3,
                 success: colors.green.accent3,
+                background: colors.grey.darken3,
             },
         },
     },
